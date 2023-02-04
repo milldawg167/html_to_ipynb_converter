@@ -3,8 +3,10 @@ import json
 import codecs
 import lxml
 
-response = "C:/Users/andre/Documents/CQF/Python_Labs/Introduction to Financial Time Series/01-Financial-Timeseries.html"
-f = codecs.open(response,'r','utf-8')
+input_file = "path/to/file.html" # must be a .html file
+output_file = "path/to/output_file.ipynb" # must be a .ipynb file
+
+f = codecs.open(input_file,'r','utf-8')
 text = f.read()
 
 soup = BeautifulSoup(text, 'lxml')
@@ -38,4 +40,5 @@ for d in soup.find_all("div"):
                     cell['source'] = [d.decode_contents()]
                     cell['cell_type'] = 'markdown'
                     dictionary['cells'].append(cell)
-open('C:/Users/andre/Downloads/notebook.ipynb', 'w').write(json.dumps(dictionary))
+		
+open(output_file, 'w').write(json.dumps(dictionary))
